@@ -64,7 +64,11 @@ public class PowerPanel extends JPanel {
         watts = VOLTS * AMPERES;
 
         // Get print hours entered
-        time = Double.parseDouble(printHours.getText());
+        try {
+            time = Double.parseDouble(printHours.getText());
+        } catch(NumberFormatException e){
+            time = 0.0;
+        }
 
         // Determine kWh usage
         kWh = (watts * time) / 1000;

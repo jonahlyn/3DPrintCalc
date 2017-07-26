@@ -47,7 +47,6 @@ public class MaterialsPanel extends JPanel {
         // Create the object weight text entry
         objWeightLabel = new JLabel("Object weight in grams: ");
         objWeight = new JTextField(10);
-        objWeight.setText("0");
 
         // Create the label for showing cost for materials
         costInfo = new JLabel("");
@@ -86,7 +85,11 @@ public class MaterialsPanel extends JPanel {
                 totalCost = 0.0;
 
         // Get the object weight value entered (in grams)
-        weight = Double.parseDouble(objWeight.getText());
+        try {
+            weight = Double.parseDouble(objWeight.getText());
+        } catch (NumberFormatException e) {
+            weight = 0.0;
+        }
 
         // Get the selected material cost
         if(pla.isSelected()){
@@ -107,7 +110,10 @@ public class MaterialsPanel extends JPanel {
         return totalCost;
     }
 
-
+    /**
+     * Private inner class to display materials cost
+     * when one of the options widgets changes.
+     */
     private class WidgetListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             costInfo.setText(
