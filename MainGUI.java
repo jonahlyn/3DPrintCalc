@@ -16,6 +16,7 @@ public class MainGUI extends JFrame{
     private GreetingPanel greetingPanel;   // instructions
     private MaterialsPanel materialsPanel; // materials
     private PowerPanel powerPanel;         // power
+    private LaborPanel laborPanel;         // labor
 
     // Buttons
     private JPanel buttonPanel;
@@ -43,12 +44,14 @@ public class MainGUI extends JFrame{
         greetingPanel = new GreetingPanel();
         materialsPanel = new MaterialsPanel();
         powerPanel = new PowerPanel();
+        laborPanel = new LaborPanel();
         buildButtonPanel();
 
         // Add panels to content pane.
         add(greetingPanel, BorderLayout.NORTH);
         add(materialsPanel, BorderLayout.WEST);
         add(powerPanel, BorderLayout.CENTER);
+        add(laborPanel, BorderLayout.EAST);
         add(buttonPanel, BorderLayout.SOUTH);
 
         // Pack contents of window
@@ -81,14 +84,15 @@ public class MainGUI extends JFrame{
 
     private class CalcButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            double materialCost, powerCost, subtotal;
+            double materialCost, powerCost, laborCost, subtotal;
 
             // Calculate the different types of costs
             materialCost = materialsPanel.getMaterialCost();
             powerCost = powerPanel.getPowerCost();
+            laborCost = laborPanel.getLaborCost();
 
             // Calculate the subtotal.
-            subtotal = materialCost + powerCost;
+            subtotal = materialCost + powerCost + laborCost;
 
             // Display the charges.
             JOptionPane.showMessageDialog(null,
