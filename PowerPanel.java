@@ -24,19 +24,31 @@ public class PowerPanel extends JPanel {
     private JLabel powerCostLabel;
     private JTextField powerCost;
 
+    // Printer power wattage input
+    private JLabel printerWattageLabel;
+    private JTextField printerWattage;
+
     /**
      * Constructor
      */
     public PowerPanel(){
         // Set the layout
-        setLayout(new GridLayout(4,1));
+        setLayout(new GridLayout(6,1));
 
-        // Create the input areas
+        // Print time input
         printHoursLabel = new JLabel("Print time in hours: ");
         printHours = new JTextField(10);
 
+        // Electricity cost input
         powerCostLabel = new JLabel("Cost of electricity per kWh: ");
         powerCost = new JTextField(10);
+        powerCost.setText(String.valueOf(COSTPERKWH)); // Set a default the user can change
+
+        // Printer wattage input
+        printerWattageLabel = new JLabel("Printer Watts: ");
+        printerWattage = new JTextField(10);
+        //Calculate the wattage of the printer and set it as a default value.
+        printerWattage.setText(String.valueOf(VOLTS * AMPERES));
 
         // Add a border around the panel
         setBorder(BorderFactory.createTitledBorder("Power"));
@@ -47,6 +59,9 @@ public class PowerPanel extends JPanel {
 
         add(powerCostLabel);
         add(powerCost);
+
+        add(printerWattageLabel);
+        add(printerWattage);
     }
 
     /**
@@ -58,10 +73,8 @@ public class PowerPanel extends JPanel {
         double  time = 0.0,
                 watts = 0.0,
                 kWh = 0.0,
+                cost = 0.0,
                 totalCost = 0.0;
-
-        //Calculate the wattage of the printer
-        watts = VOLTS * AMPERES;
 
         // Get print hours entered
         try {
@@ -70,14 +83,25 @@ public class PowerPanel extends JPanel {
             time = 0.0;
         }
 
+        // Get the printer wattage
+        try {
+            watts = Double.parseDouble(printerWattage.getText());
+        } catch(NumberFormatException e) {
+            watts = 0.0;
+        }
+
         // Determine kWh usage
         kWh = (watts * time) / 1000;
 
         // Get the cost of electricity
-        //costOfElectricity = Double.parseDouble(powerCost.getText());
+        try {
+            cost = Double.parseDouble(powerCost.getText());
+        } catch(NumberFormatException e) {
+            cost = 0.0;
+        }
 
         // Calculate power cost
-        totalCost = COSTPERKWH * kWh;
+        totalCost = cost * kWh;
 
         return totalCost;
     }
