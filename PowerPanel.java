@@ -35,7 +35,7 @@ public class PowerPanel extends JPanel {
         printHoursLabel = new JLabel("Print time in hours: ");
         printHours = new JTextField(10);
 
-        powerCostLabel = new JLabel("Cost of electricity: ");
+        powerCostLabel = new JLabel("Cost of electricity per kWh: ");
         powerCost = new JTextField(10);
 
         // Add a border around the panel
