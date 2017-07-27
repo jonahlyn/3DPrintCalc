@@ -35,9 +35,9 @@ public class MaterialsPanel extends JPanel {
         setLayout(new GridLayout(7,1));
 
         // Create the radio button options
-        pla = new JRadioButton(String.format("PLA ($%.0f)", PLA), true);
-        glowPla = new JRadioButton(String.format("Glow in the Dark PLA ($%.0f)", GLOW_PLA));
-        woodPla = new JRadioButton(String.format("Wood PLA ($%.0f)", WOOD_PLA));
+        pla = new JRadioButton(String.format("PLA (1kg @ $%.0f)", PLA), true);
+        glowPla = new JRadioButton(String.format("Glow in the Dark PLA (1kg @ $%.0f)", GLOW_PLA));
+        woodPla = new JRadioButton(String.format("Wood PLA (1kg @ $%.0f)", WOOD_PLA));
 
         // Group the radio buttons.
         plaGroup = new ButtonGroup();
