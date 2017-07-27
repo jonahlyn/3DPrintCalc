@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.*;
 
 /**
  PowerPanel class shows options
@@ -28,12 +28,15 @@ public class PowerPanel extends JPanel {
     private JLabel printerWattageLabel;
     private JTextField printerWattage;
 
+    // Power subtotal display label
+    private JLabel powerSubtotalLabel;
+
     /**
      * Constructor
      */
     public PowerPanel(){
         // Set the layout
-        setLayout(new GridLayout(6,1));
+        setLayout(new GridLayout(7,1));
 
         // Print time input
         printHoursLabel = new JLabel("Print time in hours: ");
@@ -50,18 +53,24 @@ public class PowerPanel extends JPanel {
         //Calculate the wattage of the printer and set it as a default value.
         printerWattage.setText(String.valueOf(VOLTS * AMPERES));
 
+        // Power subtotal label to display power cost subtotal
+        powerSubtotalLabel = new JLabel("");
+
+        printHours.addActionListener(new WidgetListener());
+        powerCost.addActionListener(new WidgetListener());
+        printerWattage.addActionListener(new WidgetListener());
+
         // Add a border around the panel
         setBorder(BorderFactory.createTitledBorder("Power"));
 
         // Add widgets to panel
         add(printHoursLabel);
         add(printHours);
-
         add(powerCostLabel);
         add(powerCost);
-
         add(printerWattageLabel);
         add(printerWattage);
+        add(powerSubtotalLabel);
     }
 
     /**
@@ -104,5 +113,18 @@ public class PowerPanel extends JPanel {
         totalCost = cost * kWh;
 
         return totalCost;
+    }
+
+
+    /**
+     * Private inner class to display materials cost
+     * when one of the options widgets changes.
+     */
+    private class WidgetListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            powerSubtotalLabel.setText(
+                    String.format("Power cost: $%,.2f\n",
+                            getPowerCost()));
+        }
     }
 }
