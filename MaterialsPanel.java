@@ -16,6 +16,7 @@ public class MaterialsPanel extends JPanel {
     private JRadioButton woodPla;
 
     private ButtonGroup plaGroup;
+    private JLabel buttonsLabel;
 
     // Object weight text field
     private JLabel objWeightLabel;
@@ -31,7 +32,7 @@ public class MaterialsPanel extends JPanel {
     public MaterialsPanel() {
 
         // GridLayout with four rows and one column.
-        setLayout(new GridLayout(6,1));
+        setLayout(new GridLayout(7,1));
 
         // Create the radio button options
         pla = new JRadioButton(String.format("PLA ($%.0f)", PLA), true);
@@ -43,6 +44,9 @@ public class MaterialsPanel extends JPanel {
         plaGroup.add(pla);
         plaGroup.add(glowPla);
         plaGroup.add(woodPla);
+
+        // Create a label for the button group
+        buttonsLabel = new JLabel("Filament type: ");
 
         // Create the object weight text entry
         objWeightLabel = new JLabel("Object weight in grams: ");
@@ -66,6 +70,7 @@ public class MaterialsPanel extends JPanel {
         add(objWeight);
 
         // Add radio buttons to panel.
+        add(buttonsLabel);
         add(pla);
         add(glowPla);
         add(woodPla);
