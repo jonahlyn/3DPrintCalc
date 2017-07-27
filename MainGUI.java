@@ -75,6 +75,7 @@ public class MainGUI extends JFrame{
 
         // Register the event listeners
         calcButton.addActionListener(new CalcButtonListener());
+        exitButton.addActionListener(new ExitButtonListener());
 
         // Add the buttons to the button panel.
         buttonPanel.add(calcButton);
@@ -82,6 +83,9 @@ public class MainGUI extends JFrame{
     }
 
 
+    /**
+     * Private inner class that handles the click on the Calculate button.
+     */
     private class CalcButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             double materialCost, powerCost, laborCost, subtotal;
@@ -97,6 +101,16 @@ public class MainGUI extends JFrame{
             // Display the charges.
             JOptionPane.showMessageDialog(null,
                     String.format("Subtotal: $%,.2f\n", subtotal));
+        }
+    }
+
+
+    /**
+     * Private inner class that handles the click event on the Exit button.
+     */
+    private class ExitButtonListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            System.exit(0);
         }
     }
 
