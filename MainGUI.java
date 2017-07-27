@@ -92,7 +92,7 @@ public class MainGUI extends JFrame{
 
             // Display the charges.
             JOptionPane.showMessageDialog(null,
-                    String.format("Materials cost: $%,.2f\n", subtotal));
+                    String.format("Subtotal: $%,.2f\n", subtotal));
         }
     }
 
