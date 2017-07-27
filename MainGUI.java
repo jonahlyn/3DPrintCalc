@@ -8,6 +8,10 @@ import java.awt.event.*;
  */
 public class MainGUI extends JFrame{
 
+    // Window size parameters
+    private final int WINDOW_WIDTH = 600;
+    private final int WINDOW_HEIGHT = 400;
+
     // Options panels
     private GreetingPanel greetingPanel;   // instructions
     private MaterialsPanel materialsPanel; // materials
@@ -25,6 +29,9 @@ public class MainGUI extends JFrame{
 
         // Display a title
         setTitle("3D Printing Calculator");
+
+        // Set the window size
+        //setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         // Specify close action
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
