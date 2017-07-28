@@ -7,11 +7,11 @@ import java.awt.*;
  */
 public class LaborPanel extends JPanel {
 
-    private final double LABORCOST = 15.0; // labor cost per hour in USD
+    private final double LABORCOST = 7.50;  // labor cost hourly rate
 
     private JCheckBox includeLabor;
     private JLabel laborHoursLabel;
-    private JTextField laborHours;
+    private TimeSelector timeSelector;
 
     /**
      * Constructor
@@ -21,11 +21,12 @@ public class LaborPanel extends JPanel {
         setLayout(new GridLayout(4,1));
 
         // Create the checkbox
-        includeLabor = new JCheckBox("Include Labor Costs?");
+        includeLabor = new JCheckBox(
+                String.format("Include Labor (@$%.2f/hr)?", LABORCOST));
 
-        // Create the textfield
-        laborHoursLabel = new JLabel("Pre and post processing time in hours: ");
-        laborHours = new JTextField(10);
+        // Create the TimeSelector to collect labor hours
+        laborHoursLabel = new JLabel("Pre/post production time: ");
+        timeSelector = new TimeSelector();
 
         // Add a border around the panel
         setBorder(BorderFactory.createTitledBorder("Labor"));
@@ -33,14 +34,15 @@ public class LaborPanel extends JPanel {
         // Add widgets to the panel
         add(includeLabor);
         add(laborHoursLabel);
-        add(laborHours);
+        add(timeSelector);
     }
 
     public double getLaborCost(){
         double laborCost = 0.0;
+        double laborTime = 0.0;
 
         if(includeLabor.isSelected()){
-            laborCost = Double.parseDouble(laborHours.getText()) * LABORCOST;
+            laborCost = LABORCOST * (timeSelector.getHours() + (timeSelector.getMinutes()/60.0));
         }
 
         return laborCost;
