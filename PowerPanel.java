@@ -27,9 +27,6 @@ public class PowerPanel extends JPanel {
     private JLabel printerWattageLabel;
     private JTextField printerWattage;
 
-    // Power subtotal display label
-    private JLabel powerSubtotalLabel;
-
     /**
      * Constructor
      */
@@ -40,7 +37,7 @@ public class PowerPanel extends JPanel {
         GridBagConstraints c = new GridBagConstraints();
 
         // Print hours selector
-        timeSelector = new TimeSelector("Print time in hours: ");
+        timeSelector = new TimeSelector("Time to print: ");
 
         // Electricity cost input
         powerCostLabel = new JLabel("Cost of electricity per kWh: ");
@@ -52,13 +49,6 @@ public class PowerPanel extends JPanel {
         printerWattage = new JTextField(10);
         //Calculate the wattage of the printer and set it as a default value.
         printerWattage.setText(String.valueOf(VOLTS * AMPERES));
-
-        // Power subtotal label to display power cost subtotal
-        powerSubtotalLabel = new JLabel("Power cost:");
-
-        //printHours.addActionListener(new WidgetListener());
-        powerCost.addActionListener(new WidgetListener());
-        printerWattage.addActionListener(new WidgetListener());
 
         // Add a border around the panel
         setBorder(BorderFactory.createTitledBorder("Power"));
@@ -84,11 +74,7 @@ public class PowerPanel extends JPanel {
         add(printerWattageLabel, c);
         
         c.gridx = 0; c.gridy = 4;        
-        add(printerWattage, c);
-        
-        // Power cost subtotal
-        c.gridx = 0; c.gridy = 5;        
-        add(powerSubtotalLabel, c);
+        add(printerWattage, c);       
     }
 
     /**
@@ -136,16 +122,4 @@ public class PowerPanel extends JPanel {
         return totalCost;
     }
 
-
-    /**
-     * Private inner class to display materials cost
-     * when one of the options widgets changes.
-     */
-    private class WidgetListener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            powerSubtotalLabel.setText(
-                    String.format("Power cost: $%,.2f\n",
-                            getPowerCost()));
-        }
-    }
 }
