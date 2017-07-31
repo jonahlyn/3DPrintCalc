@@ -16,9 +16,8 @@ public class PowerPanel extends JPanel {
     // Cost of electricity
     public final double COSTPERKWH = 0.1472299; // PNM Block 3 cost per kWh in USD
 
-    // Print hours text input
-    private JLabel printHoursLabel;
-    private JTextField printHours;
+    // Print hours selector
+    private TimeSelector timeSelector;
 
     // Electricity cost input
     private JLabel powerCostLabel;
@@ -36,11 +35,12 @@ public class PowerPanel extends JPanel {
      */
     public PowerPanel(){
         // Set the layout
-        setLayout(new GridLayout(7,1));
+        // Reference: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 
-        // Print time input
-        printHoursLabel = new JLabel("Print time in hours: ");
-        printHours = new JTextField(10);
+        // Print hours selector
+        timeSelector = new TimeSelector("Print time in hours: ");
 
         // Electricity cost input
         powerCostLabel = new JLabel("Cost of electricity per kWh: ");
@@ -54,9 +54,9 @@ public class PowerPanel extends JPanel {
         printerWattage.setText(String.valueOf(VOLTS * AMPERES));
 
         // Power subtotal label to display power cost subtotal
-        powerSubtotalLabel = new JLabel("");
+        powerSubtotalLabel = new JLabel("Power cost:");
 
-        printHours.addActionListener(new WidgetListener());
+        //printHours.addActionListener(new WidgetListener());
         powerCost.addActionListener(new WidgetListener());
         printerWattage.addActionListener(new WidgetListener());
 
@@ -64,13 +64,31 @@ public class PowerPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Power"));
 
         // Add widgets to panel
-        add(printHoursLabel);
-        add(printHours);
-        add(powerCostLabel);
-        add(powerCost);
-        add(printerWattageLabel);
-        add(printerWattage);
-        add(powerSubtotalLabel);
+        c.anchor = GridBagConstraints.LINE_START;
+        c.insets = new Insets(10,0,0,0);  //top padding
+        
+        // Print time selector
+        c.gridx = 0; c.gridy = 0;        
+        c.weightx = 1.0;
+        add(timeSelector, c);
+        
+        // Electricity cost
+        c.gridx = 0; c.gridy = 1;
+        add(powerCostLabel, c);
+        
+        c.gridx = 0; c.gridy = 2;        
+        add(powerCost, c);
+        
+        // Printer wattage
+        c.gridx = 0; c.gridy = 3;        
+        add(printerWattageLabel, c);
+        
+        c.gridx = 0; c.gridy = 4;        
+        add(printerWattage, c);
+        
+        // Power cost subtotal
+        c.gridx = 0; c.gridy = 5;        
+        add(powerSubtotalLabel, c);
     }
 
     /**
@@ -79,6 +97,7 @@ public class PowerPanel extends JPanel {
      * @return The cost of running the printer.
      */
     public double getPowerCost(){
+        int hours, minutes;
         double  time = 0.0,
                 watts = 0.0,
                 kWh = 0.0,
@@ -87,7 +106,9 @@ public class PowerPanel extends JPanel {
 
         // Get print hours entered
         try {
-            time = Double.parseDouble(printHours.getText());
+            hours = timeSelector.getHours();
+            minutes = timeSelector.getMinutes();
+            time = (double) hours + (minutes/60.0);
         } catch(NumberFormatException e){
             time = 0.0;
         }

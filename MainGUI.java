@@ -38,9 +38,7 @@ public class MainGUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create a layout manager
-        // Reference: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        setLayout(new BorderLayout());
 
         // Create panels
         greetingPanel = new GreetingPanel();
@@ -50,38 +48,21 @@ public class MainGUI extends JFrame{
         buildButtonPanel();
 
         // Add panels to content pane.
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 3;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        add(greetingPanel, c);
 
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.fill = GridBagConstraints.VERTICAL;
-        c.anchor = GridBagConstraints.PAGE_START;
-        add(materialsPanel, c);
+        // Introduction text
+        add(greetingPanel, BorderLayout.NORTH);
 
-        c.gridx = 1;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.fill = GridBagConstraints.VERTICAL;
-        c.anchor = GridBagConstraints.PAGE_START;
-        add(powerPanel, c);
+        // Materials Settings
+        add(materialsPanel, BorderLayout.WEST);
 
-        c.gridx = 2;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.fill = GridBagConstraints.VERTICAL;
-        c.anchor = GridBagConstraints.PAGE_START;
-        add(laborPanel, c);
+        // Power Settings
+        add(powerPanel, BorderLayout.CENTER);
 
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 3;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        add(buttonPanel, c);
+        // Labor Settings
+        add(laborPanel, BorderLayout.EAST);
+
+        // Buttons
+        add(buttonPanel, BorderLayout.SOUTH);
 
         // Pack contents of window
         // resizes to make sure everything fits within it

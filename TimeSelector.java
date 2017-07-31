@@ -11,6 +11,7 @@ public class TimeSelector extends JPanel {
     private final int MINUTES = 60;
     private String[] hours = new String[HOURS];
     private String[] minutes = new String[MINUTES];
+    private JLabel timeSelectorLabel;
     private JLabel hoursBoxLabel;
     private JComboBox<String> hoursBox;
     private JLabel minutesBoxLabel;
@@ -19,10 +20,13 @@ public class TimeSelector extends JPanel {
     /**
      * Constructor
      */
-    public TimeSelector() {
+    public TimeSelector(String labelText) {
         // Default layout
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+
+        // Create a label for the whole panel
+        timeSelectorLabel = new JLabel(labelText);
 
         // Create the hours dropdown
         hoursBoxLabel = new JLabel("Hours: ");
@@ -43,20 +47,28 @@ public class TimeSelector extends JPanel {
         //minutesBox.setEditable(true);
 
         // Add widgts to the panel
-        c.gridx = 0;
-        c.gridy = 0;
+        c.anchor = GridBagConstraints.LINE_START;
+        
+        // Main Panel Label
+        c.gridx = 0; c.gridy = 0;
+        c.insets = new Insets(0,0,10,0);  //bottom padding
+        add(timeSelectorLabel, c);
+
+        // Hours Label
+        c.gridx = 0; c.gridy = 1;
+        c.insets = new Insets(0,0,0,0);   //reset to default
         add(hoursBoxLabel,c);
 
-        c.gridx = 1;
-        c.gridy = 0;
+        // Hours Selector
+        c.gridx = 1; c.gridy = 1;
         add(hoursBox,c);
 
-        c.gridx = 0;
-        c.gridy = 1;
+        // Minutes Label
+        c.gridx = 0; c.gridy = 2;
         add(minutesBoxLabel,c);
 
-        c.gridx = 1;
-        c.gridy = 1;
+        // Minutes Selector
+        c.gridx = 1; c.gridy = 2;
         add(minutesBox, c);
     }
 
