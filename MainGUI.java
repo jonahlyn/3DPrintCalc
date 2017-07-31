@@ -7,6 +7,9 @@ import java.awt.event.*;
  * Main GUI for application
  */
 public class MainGUI extends JFrame{
+  
+    // Tax rate
+    private final double TAX_RATE = 0.075;
 
     // Window size parameters
     private final int WINDOW_WIDTH = 600;
@@ -98,7 +101,7 @@ public class MainGUI extends JFrame{
      */
     private class CalcButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            double materialCost, powerCost, laborCost, subtotal;
+            double materialCost, powerCost, laborCost, subtotal, tax, total;
 
             // Calculate the different types of costs
             materialCost = materialsPanel.getMaterialCost();
@@ -107,10 +110,20 @@ public class MainGUI extends JFrame{
 
             // Calculate the subtotal.
             subtotal = materialCost + powerCost + laborCost;
+            
+            // Calculate tax
+            tax = subtotal * TAX_RATE;
+            
+            // Calculate the total
+            total = subtotal + tax;
 
             // Display the charges.
             JOptionPane.showMessageDialog(null,
-                    String.format("Subtotal: $%,.2f\n", subtotal));
+                    String.format("Subtotal: $%,3.2f\n" + 
+                                  "Tax (%.2f%%): $%,3.2f\n" + 
+                                  "==================\n" +
+                                  "Total: $%,3.2f\n",                                   
+                                  subtotal, TAX_RATE*100,  tax, total));
         }
     }
 
