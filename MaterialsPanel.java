@@ -80,6 +80,26 @@ public class MaterialsPanel extends JPanel {
     }
 
     /**
+     * getCostPerKg
+     * @return The cost of the filament selected.
+     */
+    public double getCostPerKg() {
+        double costPerKg = 0.0;
+
+        // Get the selected material cost
+        if(pla.isSelected()){
+            costPerKg = PLA;
+        } else if (glowPla.isSelected()){
+            costPerKg = GLOW_PLA;
+        } else if(woodPla.isSelected()){
+            costPerKg = WOOD_PLA;
+        }
+
+        return costPerKg;
+    }
+
+
+    /**
      * getMaterialsCost method
      * @return The cost of the print using the selected material
      */
@@ -97,13 +117,7 @@ public class MaterialsPanel extends JPanel {
         }
 
         // Get the selected material cost
-        if(pla.isSelected()){
-            costPerKg = PLA;
-        } else if (glowPla.isSelected()){
-            costPerKg = GLOW_PLA;
-        } else if(woodPla.isSelected()){
-            costPerKg = WOOD_PLA;
-        }
+        costPerKg = getCostPerKg();
 
         // Determine the cost per gram of the material
         // 1kg = 1000 grams
@@ -121,9 +135,19 @@ public class MaterialsPanel extends JPanel {
      */
     private class WidgetListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+            double materialCost = getMaterialCost();
+            double costPerKg = getCostPerKg();
+            
             costInfo.setText(
                     String.format("Materials cost: $%,.2f\n",
                             getMaterialCost()));
+
+            // Turn the label red if this object consumes more than half the filamanet spool.
+            if(materialCost/costPerKg > 0.5) {
+                costInfo.setForeground(Color.RED);
+            } else {
+                costInfo.setForeground(Color.BLACK);
+            }
         }
     }
 }
