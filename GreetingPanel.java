@@ -5,12 +5,17 @@
 
 import javax.swing.*;
 
-/*
- * Displays greeting text
+
+/**
+ * Greeting Panel
+ * Displays introductory text
  */
 public class GreetingPanel extends JPanel {
     private JLabel greeting; // holds greeting text
 
+    /**
+     * Constructor
+     */    
     public GreetingPanel(){
         greeting = new JLabel("Calculate the cost of creating a 3D printed object using a desktop FDM printer.");
 

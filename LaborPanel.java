@@ -6,9 +6,10 @@
 import javax.swing.*;
 import java.awt.*;
 
+
 /**
- * LaborPanel class allows the user to enter
- * options related to labor costs.
+ * LaborPanel class 
+ * Displays options related to labor costs.
  */
 public class LaborPanel extends JPanel {
 
@@ -44,6 +45,10 @@ public class LaborPanel extends JPanel {
         add(timeSelector);
     }
 
+    /**
+     * getLaborCost method
+     * @return The cost of pre- and post- production time labor.
+     */
     public double getLaborCost(){
         double laborCost = 0.0;
         double laborTime = 0.0;

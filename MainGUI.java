@@ -8,7 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-/*
+/**
+ * MainGUI class
  * Main GUI for application
  */
 public class MainGUI extends JFrame{
@@ -31,7 +32,7 @@ public class MainGUI extends JFrame{
     private JButton calcButton;
     private JButton exitButton;
 
-    /*
+    /**
      * Constructor
      */
     public MainGUI(){
@@ -102,6 +103,7 @@ public class MainGUI extends JFrame{
 
 
     /**
+     * CalcButtonListener class
      * Private inner class that handles the click on the Calculate button.
      */
     private class CalcButtonListener implements ActionListener{
@@ -134,6 +136,7 @@ public class MainGUI extends JFrame{
 
 
     /**
+     * ExitButtonListener class
      * Private inner class that handles the click event on the Exit button.
      */
     private class ExitButtonListener implements ActionListener{

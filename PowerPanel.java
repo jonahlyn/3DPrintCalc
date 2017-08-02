@@ -7,11 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
- PowerPanel class shows options
- related to cost of electricty
- */
 
+ /**
+  * PowerPanel class
+  * Displays options related to cost of electricity.
+  */
 public class PowerPanel extends JPanel {
 
     // Amperes of the Einstart-S 3D Printer
@@ -85,7 +85,7 @@ public class PowerPanel extends JPanel {
     /**
      * getPowerCost method
      * Reference: https://energy.gov/energysaver/estimating-appliance-and-home-electronic-energy-use
-     * @return The cost of running the printer.
+     * @return The cost of running the printer for the duration of the print.
      */
     public double getPowerCost(){
         int hours, minutes;

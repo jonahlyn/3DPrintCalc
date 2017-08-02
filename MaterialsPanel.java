@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 
+/**
+ * MaterialsPanel class 
+ * Displays options related to material costs.
+ */
 public class MaterialsPanel extends JPanel {
 
     // Material costs per 1kg spool
@@ -31,7 +35,7 @@ public class MaterialsPanel extends JPanel {
     private JLabel costInfo;
 
 
-    /*
+    /**
      * Constructor
      */
     public MaterialsPanel() {
@@ -85,7 +89,7 @@ public class MaterialsPanel extends JPanel {
     }
 
     /**
-     * getCostPerKg
+     * getCostPerKg method
      * @return The cost of the filament selected.
      */
     public double getCostPerKg() {
@@ -106,7 +110,7 @@ public class MaterialsPanel extends JPanel {
 
     /**
      * getMaterialsCost method
-     * @return The cost of the print using the selected material
+     * @return The cost of the print using the selected material.
      */
     public double getMaterialCost() {
         double weight = 0.0,
@@ -135,6 +139,7 @@ public class MaterialsPanel extends JPanel {
     }
 
     /**
+     * WidgetListener class
      * Private inner class to display materials cost
      * when one of the options widgets changes.
      */
@@ -147,8 +152,8 @@ public class MaterialsPanel extends JPanel {
                     String.format("Materials cost: $%,.2f\n",
                             getMaterialCost()));
 
-            // Turn the label red if this object consumes more than half the filamanet spool.
-            if(materialCost/costPerKg > 0.5) {
+            // Turn the label red if this object consumes more than half the filament spool.
+            if(materialCost/costPerKg >= 0.5) {
                 costInfo.setForeground(Color.RED);
             } else {
                 costInfo.setForeground(Color.BLACK);
