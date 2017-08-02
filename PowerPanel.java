@@ -1,3 +1,8 @@
+//Jonahlyn Gilstrap
+//Assignment 7
+//8/4/2017
+//PowerPanel.java
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

@@ -1,3 +1,8 @@
+//Jonahlyn Gilstrap
+//Assignment 7
+//8/4/2017
+//LaborPanel.java
+
 import javax.swing.*;
 import java.awt.*;
 
