@@ -7,6 +7,7 @@ Calculate the cost of creating a 3D printed object using a desktop FDM printer. 
 Instructions taken from: https://docs.oracle.com/javase/tutorial/uiswing/misc/splashscreen.html
 
 ```
+javac *.java
 jar cmf manifest.mf 3DPrintCalc.jar *.class images/splash.png
 ```
 
