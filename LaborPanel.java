@@ -18,9 +18,7 @@ public class LaborPanel extends JPanel {
      */
     public LaborPanel(){
         // Set the layout
-        // Reference: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        setLayout(new GridLayout(0,1));
 
         // Create the checkbox
         includeLabor = new JCheckBox(
@@ -33,16 +31,12 @@ public class LaborPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Labor"));
 
         // Add widgets to the panel
-        c.anchor = GridBagConstraints.LINE_START;
         
         // Include labor checkbox
-        c.gridx = 0; c.gridy = 0;
-        add(includeLabor, c);
+        add(includeLabor);
         
         // Production time selector
-        c.gridx = 0; c.gridy = 1;
-        c.insets = new Insets(10,0,0,0);  //add top padding
-        add(timeSelector, c);
+        add(timeSelector);
     }
 
     public double getLaborCost(){
